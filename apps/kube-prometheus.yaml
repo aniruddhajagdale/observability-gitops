@@ -13,8 +13,10 @@ spec:
     helm:
       values: |
         grafana:
-        enabled: true
-        adminPassword: admin
+          enabled: true
+          adminPassword: admin
+          nodeSelector:
+            node-type: high-perf
 
         resources:
           requests:

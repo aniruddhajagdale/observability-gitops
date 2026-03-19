@@ -17,6 +17,8 @@ spec:
 
         singleBinary:
           replicas: 1
+        nodeSelector:
+          node-type: high-perf
 
         requests:
           cpu: 50m
