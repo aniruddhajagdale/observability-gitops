@@ -14,10 +14,19 @@ spec:
       values: |
         grafana:
           enabled: true
+          adminPassword: admin
 
-        prometheus:
-          prometheusSpec:
-            retention: 7d
+        readinessProbe:
+          initialDelaySeconds: 60
+          timeoutSeconds: 10
+          periodSeconds: 10
+          failureThreshold: 10
+
+        livenessProbe:
+          initialDelaySeconds: 120
+          timeoutSeconds: 10
+          periodSeconds: 10
+          failureThreshold: 10
 
   destination:
     server: https://kubernetes.default.svc
