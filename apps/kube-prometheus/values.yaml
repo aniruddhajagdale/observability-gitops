@@ -1,0 +1,9 @@
+grafana:
+  enabled: false   # disable if deploying separately
+
+prometheus:
+  prometheusSpec:
+    retention: 7d
+
+alertmanager:
+  enabled: true

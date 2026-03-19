@@ -1,0 +1,5 @@
+source:
+  repoURL: https://github.com/aniruddhajagdale/observability-gitops.git
+  targetRevision: HEAD
+  path: apps
+
