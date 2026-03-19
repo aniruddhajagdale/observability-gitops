@@ -18,6 +18,10 @@ spec:
         singleBinary:
           replicas: 1
 
+        requests:
+          cpu: 50m
+          memory: 256Mi
+          
         storage:
           type: filesystem
 
