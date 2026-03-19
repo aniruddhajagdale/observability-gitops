@@ -21,10 +21,11 @@ spec:
         requests:
           cpu: 50m
           memory: 256Mi
-          
         storage:
           type: filesystem
-
+        monitoring:
+          selfMonitoring:
+          enabled: false
         grafanaAgent:
           enabled: false
 
