@@ -21,6 +21,9 @@ spec:
         storage:
           type: filesystem
 
+        grafanaAgent:
+          enabled: false
+
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
