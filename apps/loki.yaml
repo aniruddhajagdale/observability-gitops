@@ -27,8 +27,10 @@ spec:
           type: filesystem
         monitoring:
           selfMonitoring:
-          enabled: false
+            enabled: false
         grafanaAgent:
+          enabled: false
+        grafanaAgentOperator:
           enabled: false
 
   destination:
