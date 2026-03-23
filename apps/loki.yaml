@@ -15,23 +15,29 @@ spec:
         loki:
           auth_enabled: false
 
+          monitoring:
+            selfMonitoring:
+              enabled: false
+
+          grafanaAgent:
+            enabled: false
+
+          grafanaAgentOperator:
+            enabled: false
+
         singleBinary:
           replicas: 1
+
         nodeSelector:
           node-type: high-perf
 
-        requests:
-          cpu: 50m
-          memory: 256Mi
+        resources:
+          requests:
+            cpu: 50m
+            memory: 256Mi
+
         storage:
           type: filesystem
-        monitoring:
-          selfMonitoring:
-            enabled: false
-        grafanaAgent:
-          enabled: false
-        grafanaAgentOperator:
-          enabled: false
 
   destination:
     server: https://kubernetes.default.svc
