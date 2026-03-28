@@ -12,24 +12,51 @@ spec:
     chart: kube-prometheus-stack
     targetRevision: 58.3.1
     helm:
-      values: |
-        grafana:
-          adminPassword: admin123
+  values: |
+    grafana:
+      adminPassword: admin123
+      service:
+        type: NodePort
+      resources:
+        requests:
+          memory: 200Mi
+        limits:
+          memory: 400Mi
+      nodeSelector:
+        workload: heavy
 
-        alertmanager:
-          enabled: false
+    prometheus:
+      prometheusSpec:
+        retention: 3d
+        scrapeInterval: 30s
+        nodeSelector:
+          workload: heavy
+        resources:
+          requests:
+            memory: 400Mi
+          limits:
+            memory: 700Mi
 
-        prometheus:
-          prometheusSpec:
-            retention: 7d
+    alertmanager:
+      enabled: false
 
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: monitoring
+    # Disable heavy components (BIG WIN for Pi)
+    kubeEtcd:
+      enabled: false
 
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
+    kubeScheduler:
+      enabled: false
+
+    kubeControllerManager:
+      enabled: false
+
+    kubeProxy:
+      enabled: false
+
+    # Optional: reduce exporters overhead
+    nodeExporter:
+      resources:
+        requests:
+          memory: 50Mi
+        limits:
+          memory: 100Mi
